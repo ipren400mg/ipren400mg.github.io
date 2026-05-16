@@ -8,7 +8,7 @@
     "start": "vite",
     "build": "vite build",
     "postbuild": "node scripts/prepare-pages.mjs",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -b main -d dist",
     "preview": "vite preview",
     "test": "npm run build"
   },
