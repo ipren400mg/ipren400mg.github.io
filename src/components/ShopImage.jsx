@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { getFallbackImage } from '../utils/format';
 
 export default function ShopImage({
@@ -8,6 +8,7 @@ export default function ShopImage({
   className = '',
   imgClassName = '',
 }) {
+  const imgRef = useRef(null);
   const [imageSrc, setImageSrc] = useState(src);
   const [loaded, setLoaded] = useState(false);
 
@@ -15,6 +16,12 @@ export default function ShopImage({
     setImageSrc(src);
     setLoaded(false);
   }, [src]);
+
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
+      setLoaded(true);
+    }
+  }, [imageSrc]);
 
   return (
     <div
@@ -25,6 +32,7 @@ export default function ShopImage({
         <img
           alt={alt}
           className={`${imgClassName} ${loaded ? 'is-loaded' : ''}`.trim()}
+          ref={imgRef}
           onError={() => {
             if (!placeholder) {
               setImageSrc(getFallbackImage());
