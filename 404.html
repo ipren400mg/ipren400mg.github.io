@@ -13,6 +13,18 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/images/shop-icon-32.png" />
     <script type="module" crossorigin src="/assets/index-CVRMutfC.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-DVKJKUc8.css">
+      <script>
+      if (window.location.pathname !== '/') {
+        const redirectTarget =
+          window.location.origin +
+          '/#' +
+          window.location.pathname +
+          window.location.search +
+          window.location.hash;
+
+        window.location.replace(redirectTarget);
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
