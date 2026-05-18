@@ -125,8 +125,8 @@
   <section class="hours-section"    id="tpl-hours"></section>
   <section class="lunch-promo"      id="tpl-lunch-promo"></section>
   <section id="meny" class="menu-images-section" id="tpl-menu-images"></section>
-  <section class="extra-section"    id="tpl-extra"></section>
   <section class="full-menu"        id="tpl-full-menu"></section>
+  <section class="extra-section"    id="tpl-extra"></section>
   <section class="gallery-section"  id="tpl-gallery"></section>
   <section id="lunchmeny"           id="tpl-lunch-menu"></section>
 </main>
@@ -347,8 +347,8 @@ function render(site) {
   
   mount('tpl-full-menu',  buildFullMenu(site.menuLayout, site.menuCategories));
   
+
   mount('tpl-extra',      buildExtraSides(site.extraSides));
-  
   mount('tpl-gallery',    buildGallery(site.gallery));
   mount('tpl-lunch-menu', buildLunchMenu(site.lunchMenuImages));
   mount('tpl-footer',     buildFooter(site.brand, site.hours));
