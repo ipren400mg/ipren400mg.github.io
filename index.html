@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Georgia&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'Manrope', sans-serif; color: #222; background: #fff; }
@@ -333,7 +333,7 @@ function render(site) {
   mount('tpl-hours',      buildHours(site.hours));
 
   mount('tpl-lunchmeny',      buildLunchMenu(site.lunchMenu));
-  
+
   mount('tpl-full-menu',  buildFullMenu(site.menuLayout, site.menuCategories));
 
   mount('tpl-extra',      buildExtraSides(site.extraSides));
