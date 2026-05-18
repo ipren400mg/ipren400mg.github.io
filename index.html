@@ -344,8 +344,11 @@ function render(site) {
   mount('tpl-hours',      buildHours(site.hours));
   mount('tpl-lunch-promo',buildLunchPromo(site.lunchPromo));
   mount('tpl-menu-images',buildMenuImages(site.menuImages));
-  mount('tpl-extra',      buildExtraSides(site.extraSides));
+  
   mount('tpl-full-menu',  buildFullMenu(site.menuLayout, site.menuCategories));
+  
+  mount('tpl-extra',      buildExtraSides(site.extraSides));
+  
   mount('tpl-gallery',    buildGallery(site.gallery));
   mount('tpl-lunch-menu', buildLunchMenu(site.lunchMenuImages));
   mount('tpl-footer',     buildFooter(site.brand, site.hours));
