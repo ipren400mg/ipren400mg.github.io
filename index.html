@@ -132,7 +132,7 @@
 </main>
 <footer id="tpl-footer"></footer>
 
-<script src="data2.js"></script>
+<script src="config.js"></script>
 <script>
 /* ═══════════════════════════════════════════════════════════
    TEMPLATE ENGINE  –  reads SITE from data.js, builds DOM
@@ -354,7 +354,15 @@ function render(site) {
   mount('tpl-footer',     buildFooter(site.brand, site.hours));
 }
 
-document.addEventListener('DOMContentLoaded', () => render(SITE));
+document.addEventListener('DOMContentLoaded', () => {
+  fetch('menu.json')
+    .then(r => r.json())
+    .then(cfg => {
+      SITE.hours = cfg.hours;
+      SITE.menuCategories = cfg.menuCategories;
+      render(SITE);
+    });
+});
 </script>
 
 </body>
