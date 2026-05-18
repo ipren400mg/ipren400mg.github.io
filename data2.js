@@ -25,6 +25,8 @@ const SITE = {
     { label: 'Hem',       href: '#'          },
     { label: 'Meny',      href: '#meny'      },
     { label: 'Lunchmeny', href: '#lunchmeny' },
+    { label: 'Lunchmeny', href: '#lunchmeny' },
+    { label: 'Beställ online', href: 'https://qopla.com/restaurant/3maltider-sushi-&-wok/qGo2dgdYNq/order' },
   ],
 
   /* ── Hero section ────────────────────────────────────────── */
