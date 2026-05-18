@@ -1,20 +1,358 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes"
-    />
-    <title>SHOP</title>
-    <meta name="description" content="Polymer Shop Demo" />
-    <meta name="theme-color" content="#fff" />
-    <link rel="manifest" href="/manifest.json" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/shop-icon-32.png" />
-    <script type="module" crossorigin src="/assets/index-DuzVjOyo.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DVKJKUc8.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-  </html>
+<!DOCTYPE html>
+<html><!-- lang set by JS -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Georgia&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Manrope', sans-serif; color: #222; background: #fff; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── HEADER ─────────────────────────────────── */
+    header { background: var(--accent); padding: 24px 0; position: sticky; top: 0; z-index: 100; }
+    .header-inner {
+      max-width: 1108px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+    }
+    .logo { font-family: Georgia, serif; font-size: 26px; font-weight: normal; color: #fff; }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav a { color: #fff; font-weight: 600; font-size: 15px; transition: opacity .2s; }
+    nav a:hover { opacity: .75; }
+    .phone-link { display: flex; flex-direction: column; align-items: center; color: #fff; font-size: 14px; gap: 4px; }
+    .phone-link .label { font-weight: bold; font-size: 13px; }
+    .phone-link svg { width: 24px; height: 24px; fill: #fff; }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero { background: rgba(234,192,137,.26); text-align: center; padding: 80px 20px 60px; }
+    .hero h1 { font-family: Georgia, serif; font-size: clamp(32px, 6vw, 64px); font-weight: normal; color: var(--accent); margin-bottom: 16px; }
+    .hero p { max-width: 600px; margin: 0 auto 36px; font-size: 17px; color: #333; line-height: 1.6; }
+
+    /* ─── SHARED: accent underline ───────────────── */
+    .u-underline { width: 70px; height: 4px; background: var(--accent); margin: 0 auto 32px; }
+    .u-underline-white { width: 70px; height: 4px; background: #fff; margin: 0 auto 28px; }
+
+    /* ─── BUTTONS ────────────────────────────────── */
+    .btn { display: inline-block; background: var(--accent); color: #fff; padding: 12px 32px; font-size: 15px; font-weight: 600; border-radius: 3px; transition: background .2s; }
+    .btn:hover { filter: brightness(.88); }
+    .btn-white { background: #fff; color: var(--accent); }
+    .btn-white:hover { background: #f5e8e6; }
+
+    /* ─── HOURS ──────────────────────────────────── */
+    .hours-section { background: rgba(234,192,137,.26); padding: 60px 20px; display: flex; justify-content: center; }
+    .hours-card { background: var(--accent); color: #fff; padding: 50px 60px; text-align: center; min-width: 380px; }
+    .hours-card h2 { font-size: 32px; font-weight: 700; margin-bottom: 12px; }
+    .hours-list { list-style: none; }
+    .hours-list li { display: flex; justify-content: space-between; gap: 40px; padding: 8px 0; font-size: 16px; }
+    .hours-list dt { font-weight: bold; }
+
+    /* ─── LUNCH PROMO ────────────────────────────── */
+    .lunch-promo { background: rgba(234,192,137,.3); padding: 60px 20px; }
+    .lunch-inner { max-width: 1108px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; }
+    .lunch-card { background: var(--accent); color: #fff; padding: 60px 50px; text-align: center; }
+    .lunch-card h2 { font-family: Georgia, serif; font-size: 38px; font-weight: normal; margin-bottom: 12px; }
+    .lunch-image img { width: 100%; height: 400px; object-fit: cover; display: block; }
+
+    /* ─── MENU IMAGES ────────────────────────────── */
+    .menu-images-section { background: rgba(234,192,137,.26); padding: 0 0 50px; }
+    .section-header { background: rgba(176,61,46,.93); text-align: center; padding: 40px 20px; margin-bottom: 30px; }
+    .section-header h2 { color: #fff; font-size: 42px; font-weight: 700; }
+    .menu-images-inner { max-width: 1108px; margin: 0 auto; padding: 0 20px; }
+    .menu-images-inner img { width: 100%; display: block; margin-bottom: 36px; border: 1px solid #ddd; }
+
+    /* ─── EXTRA SIDES ────────────────────────────── */
+    .extra-section { background: rgba(234,192,137,.26); padding: 30px 20px 60px; }
+    .extra-card { max-width: 720px; margin: 0 auto; border: 1px solid rgba(60,60,60,.77); border-radius: 8px; padding: 30px 40px; }
+    .extra-card h3 { text-align: center; font-size: 26px; color: var(--accent); margin-bottom: 6px; }
+    .extra-underline { width: 314px; height: 4px; background: var(--accent); margin: 0 auto 24px; }
+    .extra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 30px; }
+    .extra-item { font-size: 15px; padding: 6px 0; border-bottom: 1px dotted #aaa; }
+    .extra-item small { display: block; color: #666; font-size: 13px; }
+
+    /* ─── FULL MENU ──────────────────────────────── */
+    .full-menu { background: #fff; padding-bottom: 60px; }
+    .full-menu-header { background: var(--accent); color: #fff; text-align: center; padding: 50px 20px 40px; }
+    .full-menu-header h2 { font-size: 42px; }
+    .menu-section-wrap { max-width: 1108px; margin: 0 auto; padding: 0 20px; }
+    .menu-row { display: grid; grid-template-columns: repeat(var(--cols, 1), 1fr); gap: 0 30px; margin-top: 50px; }
+    .menu-category-title { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+    .menu-divider { height: 4px; background: rgba(60,60,60,1); width: 361px; margin-bottom: 20px; }
+    .menu-item { padding: 10px 0; border-bottom: 1px solid rgba(60,60,60,.1); }
+    .menu-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+    .menu-item p { font-size: 15px; color: #555; line-height: 1.5; }
+    .menu-row-divider { height: 4px; background: var(--accent); margin: 40px 0 10px; }
+
+    /* ─── FEATURED / POKE CARD ───────────────────── */
+    .featured-card { background: rgba(176,61,46,.36); border-radius: 8px; padding: 30px 26px; max-width: 399px; margin: 30px auto; text-align: center; }
+    .featured-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .featured-card p { font-size: 15px; line-height: 1.5; }
+    .featured-card .subtitle { font-weight: bold; margin-bottom: 6px; }
+
+    /* ─── GALLERY ────────────────────────────────── */
+    .gallery-section { background: #fff; padding: 60px 20px; }
+    .gallery-grid { max-width: 1108px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 16px; }
+    .gallery-grid img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; }
+
+    /* ─── LUNCH MENU ─────────────────────────────── */
+    #lunchmeny { background: rgba(234,192,137,.26); padding-bottom: 100px; }
+    .lunch-menu-inner { max-width: 1108px; margin: 0 auto; padding: 0 20px; }
+    .lunch-menu-inner img { width: 100%; display: block; border: 1px solid #ddd; }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer { background: var(--accent); color: #fff; text-align: center; padding: 40px 20px; font-size: 15px; }
+    footer p { margin-bottom: 8px; }
+    footer .hours-summary { margin-top: 16px; font-size: 13px; opacity: .75; }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 700px) {
+      nav ul { gap: 16px; }
+      .lunch-inner { grid-template-columns: 1fr; }
+      .menu-row { grid-template-columns: 1fr !important; }
+      .extra-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .hours-card { padding: 30px 20px; min-width: unset; width: 100%; }
+      .extra-card { padding: 20px; }
+      .lunch-card { padding: 40px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Placeholders – filled by render() below -->
+<header><div class="header-inner" id="tpl-header"></div></header>
+<main>
+  <section class="hero"             id="tpl-hero"></section>
+  <section class="hours-section"    id="tpl-hours"></section>
+  <section class="lunch-promo"      id="tpl-lunch-promo"></section>
+  <section id="meny" class="menu-images-section" id="tpl-menu-images"></section>
+  <section class="extra-section"    id="tpl-extra"></section>
+  <section class="full-menu"        id="tpl-full-menu"></section>
+  <section class="gallery-section"  id="tpl-gallery"></section>
+  <section id="lunchmeny"           id="tpl-lunch-menu"></section>
+</main>
+<footer id="tpl-footer"></footer>
+
+<script src="data2.js"></script>
+<script>
+/* ═══════════════════════════════════════════════════════════
+   TEMPLATE ENGINE  –  reads SITE from data.js, builds DOM
+   ═══════════════════════════════════════════════════════════ */
+
+// ── helpers ──────────────────────────────────────────────────
+const h = (tag, attrs = {}, ...children) => {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === 'class') el.className = v;
+    else if (k === 'html') el.innerHTML = v;
+    else el.setAttribute(k, v);
+  }
+  for (const child of children.flat()) {
+    if (child == null) continue;
+    el.appendChild(typeof child === 'string' ? document.createTextNode(child) : child);
+  }
+  return el;
+};
+
+const spicyEmoji = n => n ? ' ' + '🌶️'.repeat(n) : '';
+
+// ── section builders ─────────────────────────────────────────
+
+function buildHeader(brand, nav) {
+  const phoneSvgPath = 'M162-120q-18 0-30-12t-12-30v-162q0-13 9-23.5t23-14.5l138-28q14-2 28.5 2.5T342-374l94 94q38-22 72-48.5t65-57.5q33-32 60.5-66.5T681-524l-97-98q-8-8-11-19t-1-27l26-140q2-13 13-22.5t25-9.5h162q18 0 30 12t12 30q0 125-54.5 247T631-329Q531-229 409-174.5T162-120Z';
+  return [
+    h('a', { class: 'logo', href: '#' }, brand.name),
+    h('nav', {},
+      h('ul', {},
+        ...nav.map(item => h('li', {}, h('a', { href: item.href }, item.label)))
+      )
+    ),
+    h('a', { class: 'phone-link', href: brand.phone.href },
+      h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 -960 960 960' },
+        h('path', { d: phoneSvgPath })
+      ),
+      h('span', { class: 'label' }, 'Telefon'),
+      h('span', {}, brand.phone.display)
+    ),
+  ];
+}
+
+function buildHero(hero) {
+  return [
+    h('h1', {}, hero.heading),
+    h('div', { class: 'u-underline' }),
+    h('p', {}, hero.body),
+    h('a', { class: 'btn', href: hero.cta.href }, hero.cta.label),
+  ];
+}
+
+function buildHours(hours) {
+  const dl = h('dl', { class: 'hours-list' },
+    ...hours.map(row =>
+      h('div', { class: 'hours-list', style: 'display:flex;justify-content:space-between;gap:40px;padding:8px 0;font-size:16px' },
+        h('dt', {}, row.days),
+        h('dd', {}, row.time)
+      )
+    )
+  );
+  return [
+    h('div', { class: 'hours-card' },
+      h('h2', {}, 'Öppettider'),
+      h('div', { class: 'u-underline-white' }),
+      dl
+    )
+  ];
+}
+
+function buildLunchPromo(promo) {
+  return [
+    h('div', { class: 'lunch-inner' },
+      h('div', { class: 'lunch-card' },
+        h('h2', {}, promo.heading),
+        h('div', { class: 'u-underline-white' }),
+        h('a', { class: 'btn btn-white', href: promo.cta.href }, promo.cta.label)
+      ),
+      h('div', { class: 'lunch-image' },
+        h('img', { src: promo.image.src, alt: promo.image.alt, loading: 'lazy' })
+      )
+    )
+  ];
+}
+
+function buildMenuImages(images) {
+  return [
+    h('div', { class: 'section-header' }, h('h2', {}, 'Meny')),
+    h('div', { class: 'menu-images-inner' },
+      ...images.map(img => h('img', { src: img.src, alt: img.alt, loading: 'lazy' }))
+    ),
+  ];
+}
+
+function buildExtraSides(extra) {
+  const half = Math.ceil(extra.items.length / 2);
+  const col = items => h('div', {},
+    ...items.map(item => {
+      const el = h('div', { class: 'extra-item' },
+        h('strong', {}, item.name), ` — ${item.price}`
+      );
+      if (item.note) el.appendChild(h('small', {}, item.note));
+      return el;
+    })
+  );
+  return [
+    h('div', { class: 'extra-card' },
+      h('h3', {}, extra.title),
+      h('div', { class: 'extra-underline' }),
+      h('div', { class: 'extra-grid' },
+        col(extra.items.slice(0, half)),
+        col(extra.items.slice(half))
+      )
+    )
+  ];
+}
+
+function buildMenuItem(item) {
+  const title = [
+    item.num ? `${item.num}. ` : '',
+    item.name,
+    spicyEmoji(item.spicy),
+    item.price ? ` — ${item.price}` : '',
+  ].join('');
+  const el = h('div', { class: 'menu-item' }, h('h4', {}, title));
+  if (item.desc) el.appendChild(h('p', {}, item.desc));
+  return el;
+}
+
+function buildCategory(cat) {
+  const wrap = h('div', { class: 'menu-category' },
+    h('div', { class: 'menu-category-title' }, cat.title),
+    h('div', { class: 'menu-divider' }),
+    ...cat.items.map(buildMenuItem)
+  );
+  if (cat.featured) {
+    const f = cat.featured;
+    wrap.appendChild(
+      h('div', { class: 'featured-card' },
+        h('h3', {}, `${f.name} — ${f.price}`),
+        f.subtitle ? h('p', { class: 'subtitle' }, f.subtitle) : null,
+        f.desc     ? h('p', {}, f.desc) : null
+      )
+    );
+  }
+  return wrap;
+}
+
+function buildFullMenu(layout, categories) {
+  const rows = [];
+  layout.forEach((row, i) => {
+    if (i > 0) rows.push(h('div', { class: 'menu-row-divider' }));
+    const colCount = row.cols.length;
+    const menuRow = h('div', { class: 'menu-row', style: `--cols:${colCount}` },
+      ...row.cols.map(key => h('div', {}, buildCategory(categories[key])))
+    );
+    rows.push(menuRow);
+  });
+  return [
+    h('div', { class: 'full-menu-header' }, h('h2', {}, 'Meny')),
+    h('div', { class: 'menu-section-wrap' }, ...rows),
+  ];
+}
+
+function buildGallery(photos) {
+  return [
+    h('div', { class: 'gallery-grid' },
+      ...photos.map(p => h('img', { src: p.src, alt: p.alt, loading: 'lazy' }))
+    )
+  ];
+}
+
+function buildLunchMenu(images) {
+  return [
+    h('div', { class: 'section-header' }, h('h2', {}, 'Lunchmeny')),
+    h('div', { class: 'lunch-menu-inner' },
+      ...images.map(img => h('img', { src: img.src, alt: img.alt, loading: 'lazy' }))
+    ),
+  ];
+}
+
+function buildFooter(brand, hours) {
+  const summary = hours.map(r => `${r.days}: ${r.time}`).join('\u00a0|\u00a0');
+  return [
+    h('p', {}, h('strong', {}, brand.name)),
+    h('p', {}, 'Telefon: ', h('a', { href: brand.phone.href }, brand.phone.display)),
+    h('p', { class: 'hours-summary' }, summary),
+  ];
+}
+
+// ── main render ──────────────────────────────────────────────
+
+function render(site) {
+  const accent = site.brand.accentColor || '#b03d2e';
+  document.documentElement.style.setProperty('--accent', accent);
+  document.documentElement.lang = site.lang || 'sv';
+  document.title = site.title || site.brand.name;
+  document.querySelector('meta[name="description"]')?.setAttribute('content', site.description || '');
+
+  const mount = (id, nodes) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '';
+    nodes.forEach(n => n && el.appendChild(n));
+  };
+
+  mount('tpl-header',     buildHeader(site.brand, site.nav));
+  mount('tpl-hero',       buildHero(site.hero));
+  mount('tpl-hours',      buildHours(site.hours));
+  mount('tpl-lunch-promo',buildLunchPromo(site.lunchPromo));
+  mount('tpl-menu-images',buildMenuImages(site.menuImages));
+  mount('tpl-extra',      buildExtraSides(site.extraSides));
+  mount('tpl-full-menu',  buildFullMenu(site.menuLayout, site.menuCategories));
+  mount('tpl-gallery',    buildGallery(site.gallery));
+  mount('tpl-lunch-menu', buildLunchMenu(site.lunchMenuImages));
+  mount('tpl-footer',     buildFooter(site.brand, site.hours));
+}
+
+document.addEventListener('DOMContentLoaded', () => render(SITE));
+</script>
+
+</body>
+</html>
