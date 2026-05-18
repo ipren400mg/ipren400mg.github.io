@@ -45,14 +45,6 @@ const SITE = {
     },
   },
 
-  /* ── Menu overview images (scanned menu pages) ───────────── */
-  menuImages: [
-    {
-      src: 'assets/1-2.pdf',
-      alt: '3Måltider Sushi & Wok meny',
-    },
-  ],
-
   /* ── Extra sides ─────────────────────────────────────────── */
   extraSides: {
     title: 'Tillbehör',

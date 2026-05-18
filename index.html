@@ -115,11 +115,13 @@
 <main>
   <section class="hero"             id="tpl-hero"></section>
   <section class="hours-section"    id="tpl-hours"></section>
-  <section id="meny" class="menu-images-section" id="tpl-menu-images"></section>
+  <section id="lunchmeny" class="menu-images-section"></section>
+  <section id="tpl-lunchmeny"></section>
+  <section id="meny" class="menu-images-section"></section>
   <section class="full-menu"        id="tpl-full-menu"></section>
   <section class="extra-section"    id="tpl-extra"></section>
-  <section class="gallery-section"  id="tpl-gallery"></section>
-  <section id="lunchmeny"           id="tpl-lunch-menu"></section>
+
+
 </main>
 <footer id="tpl-footer"></footer>
 
@@ -194,7 +196,6 @@ function buildHours(hours) {
   ];
 }
 
-function buildLunchPromo() { return []; } // removed
 
 function buildMenuImages(images) {
   return [
@@ -330,13 +331,14 @@ function render(site) {
   mount('tpl-header',     buildHeader(site.brand, site.nav));
   mount('tpl-hero',       buildHero(site.hero));
   mount('tpl-hours',      buildHours(site.hours));
-  mount('tpl-menu-images',buildMenuImages(site.menuImages));
+
+  mount('tpl-lunchmeny',      buildLunchMenu(site.lunchMenu));
   
   mount('tpl-full-menu',  buildFullMenu(site.menuLayout, site.menuCategories));
 
   mount('tpl-extra',      buildExtraSides(site.extraSides));
-  mount('tpl-gallery',    buildGallery(site.gallery));
-  mount('tpl-lunch-menu', buildLunchMenu(site.lunchMenu));
+
+
   mount('tpl-footer',     buildFooter(site.brand, site.hours));
 }
 
