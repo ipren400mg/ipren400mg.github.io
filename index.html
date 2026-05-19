@@ -99,7 +99,8 @@
 
     /* ─── RESPONSIVE ─────────────────────────────── */
     @media (max-width: 700px) {
-      nav ul { gap: 16px; }
+      nav ul { gap: 16px; flex-wrap: wrap; justify-content: flex-end; }
+      nav li:last-child { flex-basis: 100%; text-align: right; }
       .menu-row { grid-template-columns: 1fr !important; }
       .extra-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
