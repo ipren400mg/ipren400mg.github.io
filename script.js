@@ -3,6 +3,8 @@
    ═══════════════════════════════════════════════════════════ */
 
 // ── helpers ──────────────────────────────────────────────────
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
 const h = (tag, attrs = {}, ...children) => {
   const el = document.createElement(tag);
   for (const [k, v] of Object.entries(attrs)) {
@@ -17,25 +19,39 @@ const h = (tag, attrs = {}, ...children) => {
   return el;
 };
 
+const s = (tag, attrs = {}, ...children) => {
+  const el = document.createElementNS(SVG_NS, tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    el.setAttribute(k, v);
+  }
+  for (const child of children.flat()) {
+    if (child == null) continue;
+    el.appendChild(child);
+  }
+  return el;
+};
+
 const spicyEmoji = n => n ? ' ' + '🌶️'.repeat(n) : '';
 
 // ── section builders ─────────────────────────────────────────
 
 function buildHeader(brand, nav) {
   const phoneSvgPath = 'M162-120q-18 0-30-12t-12-30v-162q0-13 9-23.5t23-14.5l138-28q14-2 28.5 2.5T342-374l94 94q38-22 72-48.5t65-57.5q33-32 60.5-66.5T681-524l-97-98q-8-8-11-19t-1-27l26-140q2-13 13-22.5t25-9.5h162q18 0 30 12t12 30q0 125-54.5 247T631-329Q531-229 409-174.5T162-120Z';
+  const phoneItem = h('li', {},
+    h('a', { class: 'phone-link', href: brand.phone.href },
+      s('svg', { viewBox: '0 -960 960 960' },
+        s('path', { d: phoneSvgPath })
+      ),
+      h('span', {}, brand.phone.display)
+    )
+  );
   return [
     h('a', { class: 'logo', href: '#' }, brand.name),
     h('nav', {},
       h('ul', {},
-        ...nav.map(item => h('li', {}, h('a', { href: item.href }, item.label)))
+        ...nav.map(item => h('li', {}, h('a', { href: item.href }, item.label))),
+        phoneItem
       )
-    ),
-    h('a', { class: 'phone-link', href: brand.phone.href },
-      h('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 -960 960 960' },
-        h('path', { d: phoneSvgPath })
-      ),
-      h('span', { class: 'label' }, 'Telefon'),
-      h('span', {}, brand.phone.display)
     ),
   ];
 }
