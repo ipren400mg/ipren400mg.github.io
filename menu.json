@@ -17,6 +17,71 @@
       "time": "16:00 – 20:30"
     }
   ],
+  "extraSides": {
+    "title": "Tillbehör",
+    "items": [
+      {
+        "name": "Sushi Maki",
+        "price": "13 kr / st"
+      },
+      {
+        "name": "Lax / avokado / räka nigiri",
+        "price": "15 kr / st"
+      },
+      {
+        "name": "Ris (kokt)",
+        "price": "15 kr / st"
+      },
+      {
+        "name": "Sushiris (kokt)",
+        "price": "20 kr / st"
+      },
+      {
+        "name": "Äggnudlar istället för ris",
+        "price": "45 kr"
+      },
+      {
+        "name": "Extra grönsaker",
+        "price": "20 kr"
+      },
+      {
+        "name": "Extra protein",
+        "price": "Biff 55 kr · Kyckling 39 kr"
+      },
+      {
+        "name": "Cashewnötter",
+        "price": "30 kr"
+      },
+      {
+        "name": "Krossade jordnötter",
+        "price": "10 kr"
+      },
+      {
+        "name": "Jordnötssås",
+        "price": "35 kr"
+      },
+      {
+        "name": "Chilimajonnäs",
+        "price": "10 kr"
+      },
+      {
+        "name": "Sjögrässallad",
+        "price": "35 kr"
+      },
+      {
+        "name": "Misosoppa",
+        "price": "10 kr"
+      },
+      {
+        "name": "Dryck",
+        "price": "20 kr"
+      },
+      {
+        "name": "Räkchips",
+        "price": "30 kr"
+      }
+    ]
+  },
   "menuCategories": {
     "forratter": {
       "title": "Förrätter",
