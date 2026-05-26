@@ -153,6 +153,11 @@
           "name": "Tempura poké",
           "price": "145 kr",
           "desc": "Friterad jätteräkor, avokado, gurka, morötter, salladsmix, rödkål, sojabönor, ris, sesamfrö, chilimayo, Goma Dressing, ålsås."
+        },
+        {
+          "name": "Friterad Kyckling Poké",
+          "price": "145",
+          "desc": "avokado,gurka,morötter,salladmix, rödkål, ris, sesamfrön, , rostad lök ,chilimajonnäs och SötSojasås"
         }
       ]
     },
@@ -287,6 +292,12 @@
           "name": "Flamberad lax",
           "price": "10 bitar 149 kr · 12 bitar 175 kr",
           "desc": "Lax, söt sojasås, chilimayo, toppad med sesamfrön och rostad lök."
+        },
+        {
+          "name": " Yakiniku Rulle 10bitar",
+          "price": "149",
+          "num": "Ny7",
+          "desc": "Skivad Entrecote med söt yakiniku sås rostad lök sesamfrön på och chilimajonnäs gurka sallad"
         }
       ]
     },
@@ -416,6 +427,13 @@
           "name": "3Måltiders kyckling med jordnötssås",
           "price": "135 kr",
           "desc": "Stekt kycklingfilé med kokosmjölk och jordnötssås."
+        },
+        {
+          "name": "Sweet chilisås kyckling",
+          "price": "139",
+          "num": "Ny8",
+          "spicy": 1,
+          "desc": "Wokade grönsaker med chilipasta och vitlök"
         }
       ]
     },
@@ -433,7 +451,8 @@
           "num": "49 NY1",
           "name": "Pad Thai",
           "price": "Kyckling 135 kr · Biff 149 kr · Räkor 159 kr",
-          "desc": "Thai chilisås, breda risnudlar, grönsaker, ägg, asiatisk fisksås, krossade jordnötter på sidan."
+          "desc": "Thai chilisås, breda risnudlar, grönsaker, ägg, asiatisk fisksås, krossade jordnötter på sidan.",
+          "spicy": 1
         },
         {
           "num": "49 NY2",
